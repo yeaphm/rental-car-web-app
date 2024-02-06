@@ -1,0 +1,56 @@
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Cars Edit</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <!-- Page Content-->
+    <section layout:fragment="body" class="py-5">
+        <input type="hidden" th:field="*{carId}">
+        <div class="container">
+            <form role="form" method="post" th:action="@{/cars/{carId}/edit(carId=${car.id})}" th:object="${car}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="model">Model</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="model"
+                                name="model"
+                                th:field="*{model}"
+                                placeholder="Model">
+                        <p th:if="${#fields.hasErrors('model')}" class="text-danger" th:errors="*{model}"></p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="photoUrl">Photo url</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="photoUrl"
+                                name="photoUrl"
+                                th:field="*{photoUrl}"
+                                placeholder="Photo url">
+                        <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="description">Description</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            th:field="*{description}"
+                            placeholder="Description">
+                    <p th:if="${#fields.hasErrors('description')}" class="text-danger" th:errors="*{description}"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Register</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <!-- Page Content -->
+    <section layout:fragment="body" class="py-5">
+        <style>
+            .main {
+                padding: 0px 10px;
+            }
+
+            .form-group{
+                margin-bottom: 20px;
+            }
+
+            @media screen and (max-width: 450px) {
+                .login-form {
+                    margin-top: 10%;
+                }
+
+                .register-form {
+                    margin-top: 10%;
+                }
+            }
+
+            @media screen and (min-width: 768px) {
+                .main {
+                    margin-left: 30%;
+                }
+
+                .sidenav {
+                    width: 40%;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        </style>
+        <div class="main">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div th:if="${param.fail}" class="alert alert-fail">
+                        Username or email already exists!
+                    </div>
+                    <div class="register-form">
+                        <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                            <p th:if="${#fields.hasErrors('username')}" class="text-danger"></p>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="username"
+                                        name="username"
+                                        th:field="*{username}"
+                                        required>
+                            </div>
+                            <p th:if="${#fields.hasErrors('email')}" class="text-danger"></p>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input
+                                        type="email"
+                                        class="form-control"
+                                        id="email"
+                                        name="email"
+                                        th:field="*{email}"
+                                        required>
+                            </div>
+                            <p th:if="${#fields.hasErrors('password')}" class="text-danger"></p>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input
+                                        type="password"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        th:field="*{password}"
+                                        required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

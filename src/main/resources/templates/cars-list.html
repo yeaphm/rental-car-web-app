@@ -1,0 +1,47 @@
+<html
+        xmlns:th="http://thymelead.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Cars List</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <!-- Page Content-->
+    <section layout:fragment="body" class="py-5">
+        <div class="container px-5 my-5">
+            <div th:if="${param.success}" class="alert alert-success">
+                You are registered successfully!
+            </div>
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Any vehicle for you</h1>
+                <p class="lead fw-normal text-muted mb-0">Available models</p>
+            </div>
+            <div class="row gx-5">
+                <div>
+                    <form th:action="@{/cars/search}" class="form-inline my-2 my-lg-0 mb-3">
+                        <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search cars" aria-label="Search">
+                    </form>
+                </div>
+                <div th:each="car : ${cars}" class="col-lg-6 mb-2">
+                    <div class="position-relative mb-3">
+                        <a th:href="@{/cars/{carId}(carId=${car.id})}" class="stretched-link">
+                            <img class="img-fluid rounded-3 mb-3" th:src="${car.photoUrl}" alt="..." />
+                        </a>
+                        <a th:text="${car.model}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" th:href="@{/cars/{carId}(carId=${car.id})}"></a>
+                    </div>
+                    <a class="btn btn-primary" th:href="@{/cars/{carId}(carId=${car.id})}">View</a>
+                    <a th:if="${user.id == car.createdBy.id}" class="btn btn-primary" th:href="@{/cars/{carId}/edit(carId=${car.id})}">Edit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-light">
+        <div class="container px-5 my-5">
+            <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+            <a class="btn btn-lg btn-primary" href="#!">Contact us</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

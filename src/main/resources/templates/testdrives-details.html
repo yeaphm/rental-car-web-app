@@ -1,0 +1,65 @@
+<html
+        xmlns:th="http://thymelead.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Test Drive Details</title>
+</head>
+<body class="d-flex flex-column">
+<!-- Page Content-->
+<section layout:fragment="body">
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder" th:text="${testdrive.name}"></h1>
+                <p class="lead mb-0">Available program</p>
+            </div>
+        </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <a href="#!"><img class="card-img-top" th:src="${testdrive.photoUrl}" alt="..." /></a>
+                    <div class="card-body">
+                        <div class="small text-muted" th:text="${testdrive.createdOn}"></div>
+                        <h2 class="card-title">About this test drive</h2>
+                        <p class="card-text" th:text="${testdrive.type}"></p>
+                        <div th:if="${user.id == testdrive.car.createdBy.id}">
+                            <a class="btn btn-primary" th:href="@{/testdrives/{testdriveId}/delete(testdriveId=${testdrive.id})}">Delete</a>
+                            <a th:href="@{/testdrives/{testdriveId}/edit(testdriveId=${testdrive.id})}" class="btn btn-primary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">Hours rent</a></li>
+                                    <li><a href="#!">Daily rent</a></li>
+                                    <li><a href="#!">Fixed trip</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Check it out</div>
+                    <div class="card-body">Choose the best test drive option to fulfill your driving and emotional experience!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
