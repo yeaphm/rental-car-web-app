@@ -23,7 +23,7 @@ Rental Car Web App is a Java-based MVC web application built using Spring Framew
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/rental-car-web-app.git
+    git clone https://github.com/yeaphm/rental-car-web-app.git
     ```
 
 2. Navigate to the project directory:
